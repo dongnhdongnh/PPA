@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf887ab2c1e235b4da7eae0f5798e1cf, type: 3}
+  m_Name: GameUnityData
+  m_EditorClassIdentifier: 
+  Effect_stun: {fileID: 0}
+  Effect_Burn: {fileID: 0}
+  Effect_Freeze: {fileID: 0}
+  Effect_Slow: {fileID: 0}
+  Effect_Silence: {fileID: 0}
+  Effect_horrify: {fileID: 0}
+  Effect_shield: {fileID: 0}
+  Effect_bleed: {fileID: 0}
+  Effect_poison: {fileID: 0}
+  Effect_buff: {fileID: 0}
+  Effect_neft: {fileID: 0}
+  Effect_HPRefill: {fileID: 0}
+  Text_ingame: {fileID: 0}
+  gameRemoteConfig:
+    Speed_ingamex1: 0
+    Speed_ingamex2: 0
+    Speed_PvP: 0
+    active_ABLevel: 0
+    active_LevelConfigData: 0
+    ads_inter_active: 0
+    ads_inter_showPerMission: 0
+    ads_inter_showAfterMission: 0
+    ads_inter_showAfterTime: 0
+    Function_ShowMap: 0
+    Function_ChangeFormationInMissionDetail: 0
+    Function_TapToShot_Active: 0
+    Function_TapToShot_CanHold: 0
+    Function_PvP_Active: 0
+    Function_Autoplay_Active: 0
+    Function_Autoplay_ActiveLevel: 0
+  PVE_BASE_REWARD_RAW: 
+  PVE_BASE_REWARD: 
+  PVE_BASE_EXP: 
+  mana_NormalAttack_nonCyber: 10
+  mana_NormalAttack_cyber: 20
+  mana_LastHit_Cyber: 300
+  mana_LastHit_NonCyber: 1
+  mana_TakeDam_NormalAtk_Cyber: 1
+  mana_TakeDam_SkillAtk_Cyber: 100
+  mana_TakeDam_NonCyber: 1
+  mana_TakeDam_SkillAtk_NonCyber: 2
+  mIDLECost_autoplay_PvE: 500
+  restDebugData: {fileID: 11400000, guid: 69eb047cc0052db4d966ae171ea357ed, type: 2}
+  restShowDetail: 1
+  SeverHost: 0
+  RESTDebug: 0
+  TestHeroMode: 0
+  TestHeroIndex: 
+  TestLocalMap: 0
+  TestPvP_playWithDEF: 0
+  TestPassiveUnlockAll: 0
