@@ -31,35 +31,35 @@ public class HttpImageGetterController
     }
     bool CheckImageAndLoad(string url, Action<Sprite> OnLoadDone)
     {
-        string path = Path.Combine(SAVE_PATH, url.GetFileNameFromUrl());
-        byte[] imageBytes = loadImage(path);
-        Texture2D texture = new Texture2D(2, 2);
-        if (imageBytes != null)
-        {
-            texture.LoadImage(imageBytes);
-            Sprite mySprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            if (OnLoadDone != null)
-                OnLoadDone(mySprite);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        //string path = Path.Combine(SAVE_PATH, url.GetFileNameFromUrl());
+        //byte[] imageBytes = loadImage(path);
+        //Texture2D texture = new Texture2D(2, 2);
+        //if (imageBytes != null)
+        //{
+        //    texture.LoadImage(imageBytes);
+        //    Sprite mySprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        //    if (OnLoadDone != null)
+        //        OnLoadDone(mySprite);
+        //    return true;
+        //}
+        //else
+        //{
+        return false;
+        //}
     }
     private void downloadImage(string url, Action<Sprite> OnLoadDone)
     {
         WWW www = new WWW(url);
-        string path = Path.Combine(SAVE_PATH, url.GetFileNameFromUrl());
-        MONO.StartCoroutine(_downloadImage(www, path, (isDone) =>
-        {
-            if (isDone)
-                CheckImageAndLoad(url, OnLoadDone);
-            else
-               if (OnLoadDone != null)
-                OnLoadDone(null);
+        //  string path = Path.Combine(SAVE_PATH, url.GetFileNameFromUr        //MONO.StartCoroutine(_downloadImage(www, path, (isDone) =>
+        //{
+        //    if (isDone)
+        //        CheckImageAndLoad(url, OnLoadDone);
+        //    else
+        //       if (OnLoadDone != null)
+        //        OnLoadDone(null);
 
-        }));
+        //}));l());
+
     }
 
     private IEnumerator _downloadImage(WWW www, string savePath, Action<bool> OnDone)

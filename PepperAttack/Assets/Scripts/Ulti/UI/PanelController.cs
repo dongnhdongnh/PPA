@@ -9,6 +9,8 @@ public class PanelController : MonoBehaviour
     {
         get
         {
+            if (instance == null)
+                instance = FindObjectOfType<PanelController>();
             return instance;
         }
     }

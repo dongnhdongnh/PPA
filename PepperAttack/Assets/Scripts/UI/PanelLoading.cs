@@ -28,12 +28,14 @@ public class PanelLoading : MonoBehaviour
 
     IEnumerator IELoading()
     {
+        float startTime = Time.time;
         while (true)
         {
-            img_process.rectTransform.localScale = new Vector3(_operation.progress, 1, 1);
+            img_process.rectTransform.localScale = new Vector3(_operation.progress / 0.9f, 1, 1);
+            //Debug.LogError(_operation.progress);
             yield return null;
 
-            if (_operation.isDone || _operation.progress >= 1) break;
+            if ((_operation.isDone || _operation.progress >= .9f) && Time.time - startTime > 1) break;
         }
         _operation.allowSceneActivation = true;
 

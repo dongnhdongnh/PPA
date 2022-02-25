@@ -17,7 +17,10 @@ public class GameRESTController : MonoBehaviour
         get
         {
             if (instance == null)
+            {
                 instance = FindObjectOfType<GameRESTController>();
+                instance.Init();
+            }
             return instance;
         }
         set
@@ -30,8 +33,17 @@ public class GameRESTController : MonoBehaviour
     public GameRESTCache Cache;
 
     public RESTUserController UserController;
+    public RESTTeamController TeamController;
+    public RESTInventoryController InventoryController;
+    public RESTBattleController BattleController;
 
     private void Awake()
+    {
+
+        Init();
+    }
+
+    public void Init()
     {
         Instance = this;
 #if UNITY_EDITOR
@@ -43,6 +55,14 @@ public class GameRESTController : MonoBehaviour
         UserController = new RESTUserController();
         UserController.Init(httpRESTController, this);
 
+        TeamController = new RESTTeamController();
+        TeamController.Init(httpRESTController, this);
+
+        InventoryController = new RESTInventoryController();
+        InventoryController.Init(httpRESTController, this);
+
+        BattleController = new RESTBattleController();
+        BattleController.Init(httpRESTController, this);
     }
 
     #region Example

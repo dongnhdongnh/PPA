@@ -28,10 +28,22 @@ public class HttpREsultObject
 }
 
 [System.Serializable]
+
 public class HttpResultData
 {
     public string token;
+    public TeamData team;
+    public PepperData[] peppers;
+    public ItemData[] potions;
+    public ResultUseHp resultUseHp;
+    public MatchData match;
 
+    public LeaderboardDataTopPlayers[] top_players;
+    public int my_position;
+
+    public SeasonData[] season;
+    public NewData news;
+    public string next_generate_hp;
 
     public override string ToString()
     {

@@ -41,10 +41,10 @@ public class DongNHEditor : MonoBehaviour
 
 
 #if UNITY_EDITOR
-    [MenuItem(MENU_NAME + "/Scene/Splash " + ALT + "1")]
+    [MenuItem(MENU_NAME + "/Scene/login " + ALT + "1")]
     static void OpenSP()
     {
-        LoadSceneByName("Splash");
+        LoadSceneByName("Login");
         //EditorSceneManager.OpenScene("Assets/Core/Scenes/Splash.unity");
     }
 
@@ -90,14 +90,14 @@ public class DongNHEditor : MonoBehaviour
     [MenuItem(MENU_NAME + "/Play Game")]
     static void PlayerGame()
     {
-        EditorSceneManager.OpenScene("Assets/Core/Scenes/Splash.unity");
+        EditorSceneManager.OpenScene("Assets/Scenes/Login.unity");
         EditorApplication.ExecuteMenuItem("Edit/Play");
     }
 
     static void LoadSceneByName(string _nameScene)
     {
         EditorApplication.SaveCurrentSceneIfUserWantsTo();
-        EditorSceneManager.OpenScene("Assets/Core/Scenes/" + _nameScene + ".unity");
+        EditorSceneManager.OpenScene("Assets/Scenes/" + _nameScene + ".unity");
     }
 
 
@@ -374,7 +374,7 @@ public class DongNHEditor : MonoBehaviour
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
     }
-  
+
     //[MenuItem(MENU_NAME + "/Tools/Excel/DownloadFromExcel")]
     //static void DownloadExcel()
     //{

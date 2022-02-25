@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 
 public class HttpRESTController
 {
-    public static string TOKEN = "";
+    public static string TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4MWRhMjI5Ni03MzkwLTRiNTQtOGY1YS04ZWQ4YWRjN2QyMGQiLCJpYXQiOjE2NDU3NjIwNjMsImV4cCI6MTY0NTg0ODQ2MywiaXNzIjoicGVwcGVyYXR0YWNrLmNvbSJ9.s92IYhKKEZOCVnuUVUXDwxCeTimRaqelsgRsMRslgx8";
     public static string REFESH_TOKEN = "";
 
     public static string API_URL
@@ -108,7 +108,7 @@ public class HttpRESTController
         }
         using (UnityWebRequest req = UnityWebRequest.Get(URL_GET))
         {
-            req.SetRequestHeader("x-access-token", TOKEN);
+            req.SetRequestHeader("Authorization", "Bearer " + TOKEN);
             req.SetRequestHeader("Accept", "application/json");
             req.SetRequestHeader("x-client-version", DongNHEditor.BUILD_VERSIONCODE.ToString());
             yield return req.Send();
