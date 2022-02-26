@@ -64,4 +64,10 @@ public class PanelPepperCardController : MonoBehaviour
         OnSelectClickAction?.Invoke(Data);
     }
 
+    public void ClearData()
+    {
+        this.Data = null;
+        SetEmpty(true);
+    }
+
 }

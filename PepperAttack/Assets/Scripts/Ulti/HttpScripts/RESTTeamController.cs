@@ -15,10 +15,10 @@ public class RESTTeamController : IRESTController
         httpRESTController.GET(this.mono, "team", null, onSuccess, onError);
     }
 
-    public void MyTeamUpdate(string pp1, string pp2, string pp3, Action<HttpREsultObject> onSuccess, Action<string> onError)
+    public void MyTeamUpdate(List<string> pps, Action<HttpREsultObject> onSuccess, Action<string> onError)
     {
         string _jsonOne = new string[] {
-        "pp1",pp1,"pp2",pp2,"pp3",pp3
+        "pp1",pps[0],"pp2",pps[1],"pp3",pps[2]
         }.toJSON();
         httpRESTController.POST(mono, "team", true, _jsonOne, null, null, onSuccess, onError);
     }
