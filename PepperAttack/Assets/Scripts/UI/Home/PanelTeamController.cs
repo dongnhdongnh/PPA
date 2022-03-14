@@ -12,6 +12,7 @@ public class PanelTeamController : MonoBehaviour
 
     [SerializeField]
     PanelPepperCardController prefabPeppersOnList;
+    List<PanelPepperCardController> peppersAll = new List<PanelPepperCardController>();
     [SerializeField]
     PanelPepperCardController[] peppersOnTeam;
 
@@ -19,7 +20,9 @@ public class PanelTeamController : MonoBehaviour
     [SerializeField]
     GameObject panelInfo;
     [SerializeField]
-    Image imgHP, imgAtk, imgDef, imgCrit, imgEva;
+    Image imgPepperView;
+    [SerializeField]
+    Text imgHP, imgAtk, imgDef, imgCrit, imgEva;
     [SerializeField]
     TextMeshProUGUI txtInfoName;
     [SerializeField]
@@ -50,6 +53,10 @@ public class PanelTeamController : MonoBehaviour
     private void OnGetTeamDone(HttpREsultObject obj)
     {
         PanelWaitingController.Instance.Hide();
+        foreach (var item in peppersOnTeam)
+        {
+            item.ClearData();
+        }
         if (obj.data.peppers != null && obj.data.peppers.Length > 0)
         {
             for (int i = 0; i < peppersOnTeam.Length; i++)
@@ -75,6 +82,18 @@ public class PanelTeamController : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            for (int i = 0; i < peppersOnTeam.Length; i++)
+            {
+                // if (i < obj.data.peppers.Length)
+                {
+                    peppersOnTeam[i].SetEmpty(true);
+                }
+            }
+        }
+        UpdateTick();
+
     }
 
     private void OnGetAllDone(HttpREsultObject obj)
@@ -83,7 +102,7 @@ public class PanelTeamController : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-
+        peppersAll.Clear();
         if (obj.data.peppers != null && obj.data.peppers.Length > 0)
         {
             foreach (PepperData data in obj.data.peppers)
@@ -91,20 +110,54 @@ public class PanelTeamController : MonoBehaviour
                 PanelPepperCardController peper = Instantiate(prefabPeppersOnList, panelListView);
                 peper.Init(data);
                 peper.SetSelectAction((p) => ShowInfo(p));
+                peppersAll.Add(peper);
             }
-
         }
+        UpdateTick();
     }
+
+    void UpdateTick()
+    {
+        if (peppersAll != null)
+            foreach (PanelPepperCardController peper in peppersAll)
+            {
+                if (peppersOnTeam != null)
+                    foreach (var _onTeam in peppersOnTeam)
+                    {
+                        if (peper.Data != null && _onTeam.Data != null && peper.Data.id.Equals(_onTeam.Data.id))
+                        {
+                            if (peper != null)
+                                peper.ShowTick();
+                            break;
+                        }
+                    }
+            }
+    }
+
     PepperData dataCurrent;
     void ShowInfo(PepperData data)
     {
         dataCurrent = data;
         panelInfo.gameObject.SetActive(true);
-        imgHP.rectTransform.localScale = new Vector3((float)data.pepper_stat.hp / 100.0f, 1, 1);
-        imgAtk.rectTransform.localScale = new Vector3((float)data.pepper_stat.attack / 100.0f, 1, 1);
-        imgDef.rectTransform.localScale = new Vector3((float)data.pepper_stat.defense / 100.0f, 1, 1);
-        imgCrit.rectTransform.localScale = new Vector3((float)data.pepper_stat.crit / 100.0f, 1, 1);
-        imgEva.rectTransform.localScale = new Vector3((float)data.pepper_stat.eva / 100.0f, 1, 1);
+
+        foreach (PanelPepperCardController item in peppersAll)
+        {
+            item.SetSelect(data.Equals(item.Data));
+        }
+        //imgHP.rectTransform.localScale = new Vector3((float)data.pepper_stat.hp / 100.0f, 1, 1);
+        //imgAtk.rectTransform.localScale = new Vector3((float)data.pepper_stat.attack / 100.0f, 1, 1);
+        //imgDef.rectTransform.localScale = new Vector3((float)data.pepper_stat.defense / 100.0f, 1, 1);
+        //imgCrit.rectTransform.localScale = new Vector3((float)data.pepper_stat.crit / 100.0f, 1, 1);
+        //imgEva.rectTransform.localScale = new Vector3((float)data.pepper_stat.eva / 100.0f, 1, 1);
+
+        imgPepperView.sprite = GameUnityData.instance.HeroView(data.Class);
+
+        imgHP.text = data.pepper_stat.hp.ToString("00");
+        imgAtk.text = data.pepper_stat.attack.ToString("00");
+        imgDef.text = data.pepper_stat.defense.ToString("00");
+        imgCrit.text = data.pepper_stat.crit.ToString("00");
+        imgEva.text = data.pepper_stat.eva.ToString("00");
+
         txtInfoName.text = data.pepper_stat.pepper_id;
 
         bool inTeam = false;
@@ -117,7 +170,7 @@ public class PanelTeamController : MonoBehaviour
                 countTeam++;
         }
 
-        btnAddTeam.gameObject.SetActive(countTeam < 3 && !inTeam);
+        btnAddTeam.gameObject.SetActive(countTeam < 5 && !inTeam);
     }
     private void OnAddTeamClickEvent()
     {

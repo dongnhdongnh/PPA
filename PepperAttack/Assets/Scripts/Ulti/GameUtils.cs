@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Frictionless;
 using System.Threading.Tasks;
 using System.Net.NetworkInformation;
-
+using System.Globalization;
 
 public class GameUtils : SingletonClass<GameUtils>
 {
@@ -140,6 +140,28 @@ public class GameUtils : SingletonClass<GameUtils>
         return device_id;
     }
 
+
+    public static string StringServerToDate(string input)
+    {
+        try
+        {
+            int _start = input.IndexOf(".");
+            int _end = input.Length;
+            string _input = input.Substring(0, _start);
+            _input = _input.Replace("T", " ");
+            var newDate = DateTime.ParseExact(_input,
+                                              "yyyy-MM-dd HH:mm:ss",
+                                               CultureInfo.InvariantCulture);
+            var _dif = newDate - DateTime.Now;
+            return new DateTime(_dif.Ticks).ToString("HH:mm:ss");
+        }
+        catch (Exception ex)
+        {
+            //Debug.LogError(ex.ToString());
+            return "";
+        }
+
+    }
 
 
 

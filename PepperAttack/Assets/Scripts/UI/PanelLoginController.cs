@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Linq;
 
 public class PanelLoginController : PanelBase<PanelLoginController>
 {
@@ -24,6 +25,10 @@ public class PanelLoginController : PanelBase<PanelLoginController>
         if_password.text = GameSave.Cache_Password;
     }
 
+    private void OnEnable()
+    {
+        MusicManager.Instance.PlayMusic(MusicManager.Instance.MusicDB.Music_Home_Random);
+    }
 
 
     private void OnEndEditEvent(string arg0)
@@ -34,6 +39,20 @@ public class PanelLoginController : PanelBase<PanelLoginController>
 
     private void OnLoginEvent()
     {
+        if (if_username.text.Replace("@", "").Replace(".", "").Any(ch => !Char.IsLetterOrDigit(ch)))
+        {
+            PanelConfirmController.Instance.InitConfirm("Warning", " Username doesn't accept special characters");
+            PanelConfirmController.Instance.Show();
+            return;
+        }
+
+        if (if_username.text.Length > 255 || if_password.text.Length > 255)
+        {
+            PanelConfirmController.Instance.InitConfirm("Warning", " Username or password exceeds 255 characters");
+            PanelConfirmController.Instance.Show();
+            return;
+        }
+
         PanelWaitingController.Instance.Init("Login");
         PanelWaitingController.Instance.Show();
         GameRESTController.Instance.UserController.Login(if_username.text, if_password.text, OnLoginDone, OnLoginError);

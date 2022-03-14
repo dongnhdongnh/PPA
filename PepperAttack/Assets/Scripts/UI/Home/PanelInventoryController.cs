@@ -19,6 +19,8 @@ public class PanelInventoryController : MonoBehaviour
     PanelPepperCardController prefabPeppersOnList;
     [SerializeField]
     Button btnCancelSelect;
+    [SerializeField]
+    Text txtItemDetail;
 
     List<PanelPepperCardController> pepperAlls;
 
@@ -37,6 +39,7 @@ public class PanelInventoryController : MonoBehaviour
 
     private void OnEnable()
     {
+        txtItemDetail.text = "Select item to use";
         PanelWaitingController.Instance.Init("Get Datas");
         PanelWaitingController.Instance.Show();
         GameRESTController.Instance.InventoryController.AllItems(OnLoadItemsDone, OnRESTError);
@@ -46,6 +49,7 @@ public class PanelInventoryController : MonoBehaviour
     private void OnInventoryItemUseEvent(GameEvent.InventoryItemUse obj)
     {
         panel_HeroList.gameObject.SetActive(true);
+        txtItemDetail.text = "+50 HP";
     }
 
     private void OnSelectPepper(PepperData data)

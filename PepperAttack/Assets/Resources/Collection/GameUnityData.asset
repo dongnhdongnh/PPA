@@ -45,6 +45,20 @@ MonoBehaviour:
   PVE_BASE_REWARD_RAW: 
   PVE_BASE_REWARD: 
   PVE_BASE_EXP: 
+  heroAvatars:
+  - {fileID: 21300000, guid: e7a8d0e487ce7c24982f94fb6183c990, type: 3}
+  - {fileID: 21300000, guid: ecb5122e5b18e734ebd120d1a5b28824, type: 3}
+  - {fileID: 21300000, guid: 5419b5e293e00864891ca2afeac18f8e, type: 3}
+  - {fileID: 21300000, guid: c72ff8b857f043946a9aa8bd304940dc, type: 3}
+  - {fileID: 21300000, guid: 1b98b06a6903ad04a87aafbf1dee6c44, type: 3}
+  - {fileID: 21300000, guid: 21330665f23492945a80117180404b51, type: 3}
+  heroViews:
+  - {fileID: 21300000, guid: 24d1c76129d54574c89d064b6a1592e7, type: 3}
+  - {fileID: 21300000, guid: b456cc0fc27a6714980c97f434f0af97, type: 3}
+  - {fileID: 21300000, guid: c3fa8249ae1e9764b982ced662b15960, type: 3}
+  - {fileID: 21300000, guid: 0b392fdc6a2a55f4391e2d23ebf995f3, type: 3}
+  - {fileID: 21300000, guid: 459ab743d580d24489be2d5d0a43ced9, type: 3}
+  - {fileID: 21300000, guid: 94be0cb12f3e1d449989e81a03154175, type: 3}
   mana_NormalAttack_nonCyber: 10
   mana_NormalAttack_cyber: 20
   mana_LastHit_Cyber: 300

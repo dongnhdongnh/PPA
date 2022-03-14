@@ -41,7 +41,7 @@ public class GameUnityData : ScriptableObject
     GameRemoteConfig gameRemoteConfig;
 
     //public bool active_Hard_LevelConfigData;
- 
+
     [Button("ShowRemoteConfig")]
     public void ShowReoteConfigData()
     {
@@ -91,7 +91,71 @@ public class GameUnityData : ScriptableObject
     #endregion
     //========================================================
     #region Public
-  
+    [SerializeField]
+    Sprite[] heroAvatars;
+    [SerializeField]
+    Sprite[] heroViews;
+
+    public Sprite HeroAvatar(PepperClass Class)
+    {
+        switch (Class)
+        {
+            case PepperClass.Bell:
+                return heroAvatars[0];
+                break;
+            case PepperClass.Chilli:
+                return heroAvatars[1];
+                break;
+            case PepperClass.Ghost:
+                return heroAvatars[2];
+                break;
+            case PepperClass.Habanero:
+                return heroAvatars[3];
+                break;
+            case PepperClass.Purira:
+                return heroAvatars[4];
+                break;
+            case PepperClass.Reaper:
+                return heroAvatars[5];
+                break;
+            case PepperClass.none:
+                return null;
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
+    public Sprite HeroView(PepperClass Class)
+    {
+        switch (Class)
+        {
+            case PepperClass.Bell:
+                return heroViews[0];
+                break;
+            case PepperClass.Chilli:
+                return heroViews[1];
+                break;
+            case PepperClass.Ghost:
+                return heroViews[2];
+                break;
+            case PepperClass.Habanero:
+                return heroViews[3];
+                break;
+            case PepperClass.Purira:
+                return heroViews[4];
+                break;
+            case PepperClass.Reaper:
+                return heroViews[5];
+                break;
+            case PepperClass.none:
+                return null;
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
     #endregion
 
     [Space(10)]
@@ -137,7 +201,7 @@ public class GameUnityData : ScriptableObject
 
 public enum ServerHostType
 {
-    Local, GG_Clound, GG_Clound_SSL, AWS, Test,Product
+    Local, GG_Clound, GG_Clound_SSL, AWS, Test, Product
 };
 [System.Serializable]
 public class GameRemoteConfig

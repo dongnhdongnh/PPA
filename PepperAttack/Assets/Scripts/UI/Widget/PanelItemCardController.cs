@@ -11,7 +11,8 @@ public class PanelItemCardController : MonoBehaviour
     TextMeshProUGUI txt_Number;
     [SerializeField]
     Button btn_use;
-
+    [SerializeField]
+    GameObject select;
 
     public ItemData Data { get; set; }
 
@@ -23,11 +24,13 @@ public class PanelItemCardController : MonoBehaviour
     public void Init(ItemData data)
     {
         this.txt_Number.text = data.number.ToString();
+        select.gameObject.SetActive(false);
     }
 
     private void OnUseClickEvent()
     {
         GameEvent.InventoryItemUse.Instance.Data = this.Data;
         GameUtils.RaiseMessage(GameEvent.InventoryItemUse.Instance);
+        select.gameObject.SetActive(true);
     }
 }

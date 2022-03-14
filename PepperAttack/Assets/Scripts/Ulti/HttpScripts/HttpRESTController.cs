@@ -20,7 +20,8 @@ public class HttpRESTController
         get
         {
             // return "http://localhost:4001/";
-            return "https://api.divineclash.com/";
+            //  return "https://api.divineclash.com/";
+            return "https://vovi.so/";
 
         }
     }
@@ -117,7 +118,7 @@ public class HttpRESTController
             if (req.isNetworkError || req.isHttpError)
             {
                 Debug.LogError("Can't connect server.Check your connection: " + URL_GET + "_" + req.responseCode + "_" + req.error);
-                onError("Can't connect server.Check your connection:");
+                onError("Can't connect server.Check your connection");
                 GameUnityData.instance.restDebugData.debugObjects.Insert(0, new RESTDebugObject()
                 {
                     method = "GET",
@@ -167,7 +168,7 @@ public class HttpRESTController
                         //if (error.Length > 0)
                         //    onError(Localization.Get("SERVER_" + info.code));
                         //else
-                        onError(info.msg);
+                        onError(ServerErrorData.Instance.GetServerError(info.msg));
                         //  onError(info.msg);
                     }
                 }
@@ -315,7 +316,7 @@ public class HttpRESTController
             if (info == null)
             {
                 if (onError != null)
-                    onError("Not get Response");
+                    onError("Could not connect to the server. Please try again");
             }
             else
             {
@@ -338,8 +339,7 @@ public class HttpRESTController
                 {
                     if (onError != null)
                     {
-                        onError(info.msg
-                            );
+                        onError(ServerErrorData.Instance.GetServerError(info.msg));
 
                         //string error = Localization.Get("SERVER_" + info.code);
                         //if (error.Length > 0)

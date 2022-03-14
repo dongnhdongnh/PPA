@@ -8,13 +8,17 @@ using System;
 public class PanelPepperCardController : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI txtName;
+    Text txtName;
+    [SerializeField]
+    Image imgAvatar;
     [SerializeField]
     GameObject panelEmpty, panelFull;
     [SerializeField]
     Image imgHPProcess;
     [SerializeField]
     Button btnSelect, btnRemove;
+    [SerializeField]
+    GameObject objTick, objSelect;
 
     public PepperData Data { get; set; }
 
@@ -29,9 +33,22 @@ public class PanelPepperCardController : MonoBehaviour
     public void Init(PepperData data)
     {
         this.Data = data;
-        txtName.text = data.pepper_stat.pepper_id;
+        imgAvatar.sprite = GameUnityData.instance.HeroAvatar(data.Class);
+        string _start = data.pepper_stat.pepper_id.Substring(0, 3);
+        string _end = data.pepper_stat.pepper_id.Substring(data.pepper_stat.pepper_id.Length - 3, 3);
+        txtName.text = _start + "..." + _end;
         imgHPProcess.rectTransform.localScale = new Vector3(((float)data.pepper_stat.hp) / 100.0f, 1, 1);
+        objTick.SetActive(false);
     }
+    public void SetSelect(bool isSelect)
+    {
+        objSelect.SetActive(isSelect);
+    }
+    public void ShowTick()
+    {
+        objTick.SetActive(true);
+    }
+
     public void SetEmpty(bool isEmpty)
     {
         panelEmpty.gameObject.SetActive(isEmpty);

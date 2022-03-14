@@ -15,11 +15,28 @@ public class RESTTeamController : IRESTController
         httpRESTController.GET(this.mono, "team", null, onSuccess, onError);
     }
 
+    public void Sync(Action<HttpREsultObject> onSuccess, Action<string> onError)
+    {
+        httpRESTController.GET(this.mono, "sync", null, onSuccess, onError);
+    }
+
     public void MyTeamUpdate(List<string> pps, Action<HttpREsultObject> onSuccess, Action<string> onError)
     {
-        string _jsonOne = new string[] {
-        "pp1",pps[0],"pp2",pps[1],"pp3",pps[2]
-        }.toJSON();
+        for (int i = pps.Count - 1; i >= 0; i--)
+        {
+            if (pps[i] == null || pps[i].Length <= 0)
+                pps.RemoveAt(i);
+        }
+        List<string> _output = new List<string>();
+        for (int i = 0; i < pps.Count; i++)
+        {
+            _output.Add("pp" + (i + 1));
+            if (pps[i] != null)
+                _output.Add(pps[i]);
+            else
+                _output.Add("");
+        }
+        string _jsonOne = _output.ToArray().toJSON();
         httpRESTController.POST(mono, "team", true, _jsonOne, null, null, onSuccess, onError);
     }
 }
