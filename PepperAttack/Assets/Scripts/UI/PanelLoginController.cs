@@ -12,6 +12,9 @@ public class PanelLoginController : PanelBase<PanelLoginController>
     TMP_InputField if_username, if_password;
 
     [SerializeField]
+    Text txt_error;
+
+    [SerializeField]
     Button btn_login;
 
     // Start is called before the first frame update
@@ -41,18 +44,21 @@ public class PanelLoginController : PanelBase<PanelLoginController>
     {
         if (if_username.text.Replace("@", "").Replace(".", "").Any(ch => !Char.IsLetterOrDigit(ch)))
         {
-            PanelConfirmController.Instance.InitConfirm("Warning", " Username doesn't accept special characters");
-            PanelConfirmController.Instance.Show();
+            //PanelConfirmController.Instance.InitConfirm("Warning", "Username doesn't accept special characters");
+            //PanelConfirmController.Instance.Show();
+            txt_error.text = "Username doesn't accept special characters";
             return;
         }
 
         if (if_username.text.Length > 255 || if_password.text.Length > 255)
         {
-            PanelConfirmController.Instance.InitConfirm("Warning", " Username or password exceeds 255 characters");
-            PanelConfirmController.Instance.Show();
+            //PanelConfirmController.Instance.InitConfirm("Warning", " Username or password exceeds 255 characters");
+            //PanelConfirmController.Instance.Show();
+            txt_error.text = "Username or password exceeds 255 characters";
             return;
         }
 
+        txt_error.text = "";
         PanelWaitingController.Instance.Init("Login");
         PanelWaitingController.Instance.Show();
         GameRESTController.Instance.UserController.Login(if_username.text, if_password.text, OnLoginDone, OnLoginError);
@@ -62,8 +68,9 @@ public class PanelLoginController : PanelBase<PanelLoginController>
     private void OnLoginError(string obj)
     {
         PanelWaitingController.Instance.Hide();
-        PanelConfirmController.Instance.InitConfirm("Warning", obj);
-        PanelConfirmController.Instance.Show();
+        txt_error.text = obj;
+        // PanelConfirmController.Instance.InitConfirm("Warning", obj);
+        // PanelConfirmController.Instance.Show();
     }
 
     private void OnLoginDone(HttpREsultObject obj)
