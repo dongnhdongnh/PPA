@@ -21,7 +21,7 @@ public class HttpRESTController
         {
             // return "http://localhost:4001/";
             //  return "https://api.divineclash.com/";
-            return "https://vovi.so/";
+            return "https://api.vovi.so/";
 
         }
     }
