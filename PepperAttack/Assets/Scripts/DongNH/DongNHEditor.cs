@@ -33,7 +33,7 @@ public class DongNHEditor : MonoBehaviour
     const string BUILD_NAME_DEV = "idleCyber_{0}_dev";
     const string BUILD_NAME_FINAL = "idleCyber_{0}_product_signed";
 
-    const string MENU_NAME = "(=^･ω･^=)";
+    const string MENU_NAME = "PepperAttack";
 
     private const string ALT = "&";
     private const string SHIFT = "#";
